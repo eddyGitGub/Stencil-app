@@ -5,7 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MatchResults, } from "@stencil/router";
+import { MatchResults, RouterHistory, } from "@stencil/router";
+import { IUser, } from "./api/auth";
 export namespace Components {
     interface AppHome {
     }
@@ -13,6 +14,20 @@ export namespace Components {
         "match": MatchResults;
     }
     interface AppRoot {
+    }
+    interface AuthPage {
+        "history": RouterHistory;
+        "match": MatchResults;
+        "setUser": (user: IUser) => void;
+    }
+    interface LazyLoading {
+        "imgSrc": string;
+    }
+    interface LazyloadingImg {
+        "imgSrc": string;
+    }
+    interface NotFound {
+        "history": RouterHistory;
     }
 }
 declare global {
@@ -34,10 +49,38 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLAuthPageElement extends Components.AuthPage, HTMLStencilElement {
+    }
+    var HTMLAuthPageElement: {
+        prototype: HTMLAuthPageElement;
+        new (): HTMLAuthPageElement;
+    };
+    interface HTMLLazyLoadingElement extends Components.LazyLoading, HTMLStencilElement {
+    }
+    var HTMLLazyLoadingElement: {
+        prototype: HTMLLazyLoadingElement;
+        new (): HTMLLazyLoadingElement;
+    };
+    interface HTMLLazyloadingImgElement extends Components.LazyloadingImg, HTMLStencilElement {
+    }
+    var HTMLLazyloadingImgElement: {
+        prototype: HTMLLazyloadingImgElement;
+        new (): HTMLLazyloadingImgElement;
+    };
+    interface HTMLNotFoundElement extends Components.NotFound, HTMLStencilElement {
+    }
+    var HTMLNotFoundElement: {
+        prototype: HTMLNotFoundElement;
+        new (): HTMLNotFoundElement;
+    };
     interface HTMLElementTagNameMap {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "auth-page": HTMLAuthPageElement;
+        "lazy-loading": HTMLLazyLoadingElement;
+        "lazyloading-img": HTMLLazyloadingImgElement;
+        "not-found": HTMLNotFoundElement;
     }
 }
 declare namespace LocalJSX {
@@ -48,10 +91,28 @@ declare namespace LocalJSX {
     }
     interface AppRoot {
     }
+    interface AuthPage {
+        "history"?: RouterHistory;
+        "match"?: MatchResults;
+        "setUser"?: (user: IUser) => void;
+    }
+    interface LazyLoading {
+        "imgSrc"?: string;
+    }
+    interface LazyloadingImg {
+        "imgSrc"?: string;
+    }
+    interface NotFound {
+        "history"?: RouterHistory;
+    }
     interface IntrinsicElements {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "auth-page": AuthPage;
+        "lazy-loading": LazyLoading;
+        "lazyloading-img": LazyloadingImg;
+        "not-found": NotFound;
     }
 }
 export { LocalJSX as JSX };
@@ -61,6 +122,10 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "auth-page": LocalJSX.AuthPage & JSXBase.HTMLAttributes<HTMLAuthPageElement>;
+            "lazy-loading": LocalJSX.LazyLoading & JSXBase.HTMLAttributes<HTMLLazyLoadingElement>;
+            "lazyloading-img": LocalJSX.LazyloadingImg & JSXBase.HTMLAttributes<HTMLLazyloadingImgElement>;
+            "not-found": LocalJSX.NotFound & JSXBase.HTMLAttributes<HTMLNotFoundElement>;
         }
     }
 }
