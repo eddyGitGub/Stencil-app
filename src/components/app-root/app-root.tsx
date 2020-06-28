@@ -1,6 +1,6 @@
 import { Component, h, State } from "@stencil/core";
 
-import { getUser, IUser } from "../../api/auth";
+import { IUser } from "../../api/auth";
 import { IAPIErrors } from "../../api/utils";
 import AuthStore from "../../api/authStore";
 
